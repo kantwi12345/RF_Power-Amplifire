@@ -1,6 +1,10 @@
 # 714 MHz class-AB LDMOS power amplifier
 
-A class-AB RF power amplifier designed and simulated in Keysight ADS around the BLP0408H9S30 LDMOS transistor. At 714 MHz it delivers 44.5 dBm (about 28 W) of output power with 20.5 dB of gain and about 57 % power-added efficiency (PAE).
+A class-AB RF power amplifier designed and simulated in Keysight ADS around the BLP0408H9S30 LDMOS transistor. At 714 MHz it delivers 44.5 dBm (about 28 W) of output power with 20.5 dB of gain and 56.4 % power-added efficiency (PAE).
+
+![Delivered power, PAE and S-parameters of the final layout](final_layout_results.png)
+
+*Final layout, ADS data display. Markers m1 and m2 are at 714 MHz.*
 
 ## Results
 
@@ -8,9 +12,9 @@ A class-AB RF power amplifier designed and simulated in Keysight ADS around the 
 |---|---|
 | Operating frequency | 714 MHz |
 | Class | AB |
-| Output power | 44.5 dBm (about 28 W) |
+| Output power | 44.5 dBm (44.522 dBm at the 714 MHz marker, about 28 W) |
 | Large-signal gain | 20.5 dB |
-| PAE | about 57 % |
+| PAE | 56.4 % (56.448 % at the 714 MHz marker) |
 | Available input power | 24 dBm |
 | Drain supply | 50 V |
 | Gate bias | 2.2 V |
@@ -20,6 +24,14 @@ A class-AB RF power amplifier designed and simulated in Keysight ADS around the 
 Gain is output power minus input power at the 24 dBm drive level (44.5 dBm − 24 dBm). PAE is (P_out − P_in) / P_DC.
 
 All figures are simulation results from ADS harmonic balance and Momentum RF EM co-simulation. They are not measurements.
+
+## What the plots show
+
+- **Delivered power (top left, 500 MHz to 1 GHz).** Power peaks at about 44.5 dBm near 714 MHz. It is roughly 31 dBm at 500 MHz and falls to roughly 34 dBm at 1 GHz.
+- **PAE (top right, 500 MHz to 1 GHz).** PAE peaks at the same frequency. It is a few percent at 500 MHz and about 6 % at 1 GHz, so efficiency is high only close to the design frequency.
+- **S-parameters (bottom, 0 to 2 GHz).** The lower plot shows the amplifier's gain, reverse isolation and port matching over a wider band.
+
+Values read from the curves away from the markers are approximate.
 
 ## Design workflow
 
@@ -34,6 +46,7 @@ All figures are simulation results from ADS harmonic balance and Momentum RF EM 
 
 - ADS workspace: `RF_PA_wrk`
 - ADS library: `RF_PA_lib` (schematics and layouts)
+- `final_layout_results.png`: data display of the final layout
 
 To reproduce the results, open `RF_PA_wrk` in Keysight ADS and run the power and frequency sweeps on the final layout.
 
